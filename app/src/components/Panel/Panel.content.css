@@ -1,0 +1,15 @@
+.ms-Panel-content p.lead {
+          font-size: 14px;
+          line-height: 20px;
+          text-align: justify;
+        }
+.ms-Panel-header { margin: 0 }
+.ms-Panel-content > p:first-child {
+          margin-top: 27px;
+          margin-bottom: 40px;
+        }
+.ms-Panel-content > div:first-child { margin-top: 48px }
+.ms-ChoiceFieldGroup > p { 
+  /* color: purple; */
+  font-weight: bold;
+}

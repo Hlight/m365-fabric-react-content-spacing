@@ -9,6 +9,7 @@ import {
   LayerHost,
   getId
 } from "office-ui-fabric-react";
+import { getPanelContent } from "./Panel.content";
 
 const panelStyles: any = (): any => {
   return {
@@ -19,33 +20,7 @@ const panelStyles: any = (): any => {
     },
     root: {
       // background: "green", // root style (example)
-      selectors: {
-        // "&": { background: "red"},// root style (example selector)
-        ".ms-Panel-content p": {
-          fontSize: "14px",
-          lineHeight: "20px",
-          textAlign: "justify"
-        },
-        ".ms-Panel-header": { margin: "0" },
-        ".ms-Panel-content > p:first-child": {
-          marginTop: "27px",
-          marginBottom: "40px"
-        },
-        ".ms-Panel-content > div:first-child": { marginTop: "48px" },
-        ".ms-ChoiceFieldGroup": { color: "purple" }
-      }
-    }
-  };
-};
-const checkboxStyles: any = (): any => {
-  return {
-    root: {
-      marginTop: "10px",
-      lineHeight: "1.46",
-      fontWeight: "bold"
-    },
-    selectors: {
-      "& + p": ""
+      selectors: {}
     }
   };
 };
@@ -81,7 +56,15 @@ export class PanelContent extends React.Component<
 
   public render() {
     return (
-      <div style={{position: "relative"}}>
+      <div
+        style={{
+          position: "relative",
+          width: "592px",
+          display: "inline-block",
+          margin: "15px",
+          border: "1px solid #efefef",
+        }}
+      >
         <Panel
           isOpen={this.state.showPanel}
           type={PanelType.custom}
@@ -101,18 +84,18 @@ export class PanelContent extends React.Component<
           id={this._layerHostId}
           style={{
             position: "relative",
-            height: "660px",
+            height: "760px",
             overflow: "hidden",
             //  borderLeft: "1px dashed #ccc",
             //  borderRight: "1px dashed #ccc"
-            padding: "15px",
+            padding: "15px"
           }}
         >
-        <DefaultButton
-          secondaryText="Opens the Sample Panel"
-          onClick={this._showPanel}
-          text={this.state.buttonText}
-        />
+          <DefaultButton
+            secondaryText="Opens the Sample Panel"
+            onClick={this._showPanel}
+            text={this.state.buttonText}
+          />
         </LayerHost>
       </div>
     );
@@ -138,204 +121,6 @@ export class PanelContent extends React.Component<
   };
 }
 
-const getPanelContent = (num: any) => {
-  num = parseInt(num);
-  switch (num) {
-    case 1:
-      return panel01();
-    case 2:
-      return panel02();
-    case 3:
-      return panel03();
-  }
-  function panel01() {
-    return (
-      <React.Fragment>
-        <p>
-          Ask why until it becomes painful, until you’re sick of the word. And
-          give it character — there’s enough ‘nice’ design in the world. Whether
-          sublime, exuberant, minimal or maximal, give your work personality.
-          Don’t be afraid to be awkward — what feels comfortable today, will be
-          boring tomorrow.
-        </p>
-        <div className="ms-ChoiceFieldGroup">
-          <Checkbox
-            label="Design can be art."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design can be aesthetics."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design is so simple, that’s why it is so complicated."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Practice safe design: Use a concept."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Good design is obvious. Great design is transparent."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design is thinking made visual."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design can be art."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design can be aesthetics."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design is so simple, that’s why it is so complicated."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Practice safe design: Use a concept."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Good design is obvious. Great design is transparent."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design is thinking made visual."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-        </div>
-      </React.Fragment>
-    );
-  }
-  function panel02() {
-    return (
-      <React.Fragment>
-        <p>
-          Ask why until it becomes painful, until you’re sick of the word. And
-          give it character — there’s enough ‘nice’ design in the world. Whether
-          sublime, exuberant, minimal or maximal, give your work personality.
-          Don’t be afraid to be awkward — what feels comfortable today, will be
-          boring tomorrow.
-        </p>
-        <div className="ms-ChoiceFieldGroup">
-          <p>If you can design one thing, you can design everything.</p>
-
-          <Checkbox
-            label="Design can be art."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design can be aesthetics."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design is so simple, that’s why it is so complicated."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Practice safe design: Use a concept."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Good design is obvious. Great design is transparent."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design is thinking made visual."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-        </div>
-        <div className="ms-ChoiceFieldGroup">
-          <p>If you can design one thing, you can design everything.</p>
-
-          <Checkbox
-            label="Design can be art."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design can be aesthetics."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <Checkbox
-            label="Design is so simple, that’s why it is so complicated."
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-        </div>
-      </React.Fragment>
-    );
-  }
-  function panel03() {
-    return (
-      <React.Fragment>
-        <p>
-          Ask why until it becomes painful, until you’re sick of the word. And
-          give it character — there’s enough ‘nice’ design in the world. Whether
-          sublime, exuberant, minimal or maximal, give your work personality.
-          Don’t be afraid to be awkward — what feels comfortable today, will be
-          boring tomorrow.
-        </p>
-        <div className="ms-ChoiceFieldGroup">
-          <p>If you can design one thing, you can design everything. </p>
-          <Checkbox
-            label="El Lissitzky"
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <p>Good design is obvious. Great design is transparent.</p>
-          <Checkbox
-            label="Joseph müller brockmann"
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <p>Design is so simple, that’s why it is so complicated.</p>
-          <Checkbox
-            label="Emil ruder"
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <p>
-            Styles come and go. Good design is a language, not a style. Good
-            design is obvious. Great design is transparent.
-          </p>
-          <Checkbox
-            label="Wolfgang weingart"
-            defaultChecked={true}
-            styles={checkboxStyles}
-          />
-          <p>Design is so simple, that’s why it is so complicated.</p>
-        </div>
-      </React.Fragment>
-    );
-  }
-  function panel04() {}
-  function panel05() {}
-  function panel06() {}
-};
 
 export const Content = () => {
   return (
@@ -344,7 +129,6 @@ export const Content = () => {
         buttonText="Open Panel - Default Pane - Check box 1"
         headerText="Check box"
         panelNum="1"
-        styles={{ root: { background: "red" } }}
       />
       <PanelContent
         buttonText="Open Panel - Default Pane - Check box 2"
@@ -355,6 +139,16 @@ export const Content = () => {
         buttonText="Open Panel - Default Pane - Check box 3"
         headerText="Check box"
         panelNum="3"
+      />
+      <PanelContent
+        buttonText="Open Panel - Default Pane - Check box 4"
+        headerText="Check box"
+        panelNum="4"
+      />
+      <PanelContent
+        buttonText="Open Panel - Default Pane - Radio Buttons 1"
+        headerText="Radio buttons"
+        panelNum="5"
       />
     </React.Fragment>
   );

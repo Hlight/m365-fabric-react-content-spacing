@@ -39,7 +39,7 @@ class App extends React.Component {
             <main className={content} data-is-scrollable={true}>
               {/* <DefaultContent /> */}
               {/* <LayerCustomizedExample /> */}
-              <div className="content-wrapper" style={{ margin: "-48px" }}>
+              <div className="content-wrapper" style={{ margin: "-48px", width: "1000%" }}>
                 <Content />
               </div>
             </main>
