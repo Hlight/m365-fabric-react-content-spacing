@@ -3,7 +3,7 @@ import React from "react";
 import "./Panel.content.css";
 // import { mergeStyleSets } from "@uifabric/merge-styles";
 // import { getClassNames } from "../Inputs/Inputs.styles";
-import { dummyContent } from "../../dummy/dummyContent";
+import { dummyContent } from "../../data/dummyContent";
 
 import { genCheckboxes, genCheckboxDesc, genRadio } from "../Inputs/Inputs";
 
@@ -26,7 +26,6 @@ const ChoiceFieldGroup = (props: any) => {
     </div>
   );
 };
-
 
 
 interface IContentItem {
@@ -64,6 +63,8 @@ export const getPanelContent = (num: any) => {
       return panel04();
     case 5:
       return panel05();
+    case 6: 
+      return panel06();
     };
 }
 
@@ -131,5 +132,17 @@ function panel05() {
     { genRadio(12, 1) }
   </>)
 }
-function panel06() {}
+function panel06() {
+  console.log("panel06");
+  const genContentItems = (limit:number) => {
+    const items: any[] = [];
+    for(let i=0; i < limit; i++) {
+      items.push(createContentItem())
+    }
+    return items;
+  }
+  return <>{genContentItems(2)}</>;
+}
+
+
 

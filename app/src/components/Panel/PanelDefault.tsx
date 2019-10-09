@@ -62,7 +62,7 @@ export class PanelContent extends React.Component<
           width: "592px",
           display: "inline-block",
           margin: "15px",
-          border: "1px solid #efefef",
+          border: "1px solid #efefef"
         }}
       >
         <Panel
@@ -84,18 +84,19 @@ export class PanelContent extends React.Component<
           id={this._layerHostId}
           style={{
             position: "relative",
-            height: "760px",
+            height: "calc(100vh - 60px)",
             overflow: "hidden",
             //  borderLeft: "1px dashed #ccc",
             //  borderRight: "1px dashed #ccc"
             padding: "15px"
           }}
+          onClick={this._showPanel}
         >
-          <DefaultButton
+          {/* <DefaultButton
             secondaryText="Opens the Sample Panel"
             onClick={this._showPanel}
             text={this.state.buttonText}
-          />
+          /> */}
         </LayerHost>
       </div>
     );
@@ -122,8 +123,24 @@ export class PanelContent extends React.Component<
 }
 
 
-export const Content = () => {
-  return (
+export class Content extends React.Component<{}, {}> {
+  public state = {
+    panels: []
+  }
+  private _addPanel = () => {
+    this.setState({
+      panels: [
+        ...this.state.panels,
+        <PanelContent
+          buttonText="Open Panel - Default Pane - Checkbox Controls 1"
+          headerText="Checkbox"
+          panelNum="6"
+        />
+      ]
+    });
+  }
+  render() {
+    return (
     <React.Fragment>
       <PanelContent
         buttonText="Open Panel - Default Pane - Check box 1"
@@ -150,6 +167,37 @@ export const Content = () => {
         headerText="Radio buttons"
         panelNum="5"
       />
+      <PanelContent
+        buttonText="Open Panel - Default Pane - Checkbox Controls 1"
+        headerText="Checkbox"
+        panelNum="6"
+      />
+      {this.state.panels}
+      <div
+        style={{
+          position: "relative",
+          width: "592px",
+          display: "inline-block",
+          margin: "15px",
+          border: "1px solid #efefef"
+        }}
+      >
+      <LayerHost
+        id={"addPanel"}
+        style={{
+          position: "relative",
+          height: "calc(100vh - 60px)",
+          overflow: "hidden",
+          //  borderLeft: "1px dashed #ccc",
+          //  borderRight: "1px dashed #ccc"
+          padding: "15px",
+          background: "gray"
+        }}
+        onClick={this._addPanel}
+      >
+      </LayerHost>
+      </div>
     </React.Fragment>
   );
-};
+  }
+}
