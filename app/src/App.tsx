@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.css';
+import React, { ReactNode } from "react";
+import "./App.css";
 import "office-ui-fabric-core/dist/css/fabric.min.css";
 import { getClassNames } from "./App.styles";
 import { initializeIcons } from "office-ui-fabric-react/lib/Icons";
@@ -12,14 +12,37 @@ import { DefaultContent } from "./components/DefaultContent/DefaultContent";
 
 import { Content } from "./components/Panel/PanelDefault";
 
-import { LayerCustomizedExample } from "./components/Panel/PanelLayer";
-
 // Icons must be initialized in order to load their styles
 initializeIcons(/* optional base url */);
 
+const PageContent: React.FC = (props: { children?: ReactNode }) => {
+  return (
+    <div
+      className="content-wrapper"
+      style={{ margin: "-48px", width: "1000%" }}
+    >
+      {/* <DefaultContent /> */}
+      {/* <LayerCustomizedExample /> */}
+      <Content />
+    </div>
+  );
+};
 
-
-class App extends React.Component {
+interface IAppState {
+  isFrameEnabled: boolean;
+}
+class App extends React.Component<{}, IAppState> {
+  public state = {
+    isFrameEnabled: true
+  };
+  constructor(props: any) {
+    super(props);
+    const urlParams = new URLSearchParams(window.location.search);
+    const isFrameEnabled = urlParams.has("frame");
+    this.state = {
+      isFrameEnabled
+    };
+  }
   render() {
     const {
       root,
@@ -31,21 +54,18 @@ class App extends React.Component {
       footer,
       searchBar
     } = getClassNames();
+    const isFrameEnabled = this.state.isFrameEnabled;
     return (
       <Fabric>
         <div className={root}>
-          <ShellHeader />
+          {isFrameEnabled ? <ShellHeader /> : ""}
           <section className={mainWrapper}>
             <main className={content} data-is-scrollable={true}>
-              {/* <DefaultContent /> */}
-              {/* <LayerCustomizedExample /> */}
-              <div className="content-wrapper" style={{ margin: "-48px", width: "1000%" }}>
-                <Content />
-              </div>
+              <PageContent />
             </main>
-            <Nav isNavCollapsed={true} />
+            {isFrameEnabled ? <Nav isNavCollapsed={true} /> : ""}
           </section>
-          <footer className={footer} />
+          {isFrameEnabled ? <footer className={footer} /> : ""}
         </div>
       </Fabric>
     );

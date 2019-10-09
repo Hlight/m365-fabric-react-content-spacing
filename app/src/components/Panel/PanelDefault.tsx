@@ -84,7 +84,7 @@ export class PanelContent extends React.Component<
           id={this._layerHostId}
           style={{
             position: "relative",
-            height: "760px",
+            height: "calc(100vh - 60px)",
             overflow: "hidden",
             //  borderLeft: "1px dashed #ccc",
             //  borderRight: "1px dashed #ccc"
@@ -149,6 +149,11 @@ export const Content = () => {
         buttonText="Open Panel - Default Pane - Radio Buttons 1"
         headerText="Radio buttons"
         panelNum="5"
+      />
+      <PanelContent
+        buttonText="Open Panel - Default Pane - Checkbox Controls 1"
+        headerText="Checkbox"
+        panelNum="6"
       />
     </React.Fragment>
   );

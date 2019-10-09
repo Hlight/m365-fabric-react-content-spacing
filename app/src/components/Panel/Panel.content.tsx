@@ -3,11 +3,66 @@ import React from "react";
 import "./Panel.content.css";
 // import { mergeStyleSets } from "@uifabric/merge-styles";
 // import { getClassNames } from "../Inputs/Inputs.styles";
-import { dummyContent } from "../../dummy/dummyContent";
+import { dummyContent } from "../../data/dummyContent";
 
 import { genCheckboxes, genCheckboxDesc, genRadio } from "../Inputs/Inputs";
 
 
+const ChoiceField = (props: any): JSX.Element[] => {
+  const getControls = (type: string): JSX.Element[] => {
+    return type === "radio"
+      ? genRadio(props.length, defaultSelected)
+      : genCheckboxes(props.length);
+  };
+
+  const type = !!props.type
+    ? props.type
+    : Math.round(Math.random() * 1) === 0
+    ? "radio"
+    : "checkbox";
+
+  const defaultSelected =
+    props.defaultSelected || Math.round(Math.random() * props.length);
+  return getControls(type);
+  // return (
+  // <div className="ms-ChoiceFieldGroup">
+  // <p>If you can design one thing, you can design everything.</p>
+  // {getControls(type)}
+  // </div>
+  // );
+};
+const ChoiceFieldGroup = (props: any): JSX.Element => {
+  return (
+    <div className="ms-ChoiceFieldGroup">
+      <p>If you can design one thing, you can design everything.</p>
+      <ChoiceField {...props} />
+    </div>
+  );
+};
+
+
+interface IContentItem {
+  type?: string;
+  length?: string;
+  defaultSelected?: string;
+}
+const createContentItem = ({type, length, defaultSelected}: IContentItem = {}) => {
+  type = type || (() => {
+    const types = ["ChoiceFieldGroup"];
+    const randomIndex = Math.round(Math.random() * (types.length-1));
+    console.log(randomIndex, types[randomIndex]);
+    return types[randomIndex];
+  })();
+  const types = type.split("--");
+  const typeField = types[0];
+  const typeInput = types[1];
+  const inputCount = (length) ? length : Math.round(Math.random() * 12);
+  switch (typeField) {
+    case "ChoiceFieldGroup":
+      return <ChoiceFieldGroup type={typeInput} length={inputCount} />;
+    // case ""      
+  }
+};
 export const getPanelContent = (num: any) => {
   num = parseInt(num);
   switch (num) {
@@ -21,6 +76,8 @@ export const getPanelContent = (num: any) => {
       return panel04();
     case 5:
       return panel05();
+    case 6: 
+      return panel06();
     };
 }
 
@@ -88,5 +145,17 @@ function panel05() {
     { genRadio(12, 1) }
   </>)
 }
-function panel06() {}
+function panel06() {
+  console.log("panel06");
+  const genContentItems = (limit:number) => {
+    const items: any[] = [];
+    for(let i=0; i < limit; i++) {
+      items.push(createContentItem())
+    }
+    return items;
+  }
+  return <>{genContentItems(2)}</>;
+}
+
+
 

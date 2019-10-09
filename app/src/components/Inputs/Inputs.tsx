@@ -2,7 +2,7 @@ import React from "react";
 // import { getClassNames } from "./Inputs.styles";
 import { Checkbox, ChoiceGroup, getId } from "office-ui-fabric-react";
 import { mergeStyleSets } from "@uifabric/merge-styles";
-import { dummyContent } from "../../dummy/dummyContent";
+import { dummyContent } from "../../data/dummyContent";
 
 // export const CheckboxDefault: React.FC = () => {
 //   return (
@@ -112,8 +112,8 @@ export const genCheckboxDesc = (amount: number): any[] => {
 };
 
 // Generate checkboxes with random labels
-export const genCheckboxes = (amount: number): any[] => {
-  const out: any[] = [];
+export const genCheckboxes = (amount: number): JSX.Element[] => {
+  const out: JSX.Element[] = [];
   const history: number[] = [];
   // Get random label while reducing duplicates
   const getUniqueContent = (): string => {
@@ -150,52 +150,55 @@ export const genCheckboxes = (amount: number): any[] => {
   return out;
 };
 
-export const genRadio = (amount: number, defaultOption: number): any[] => {
-  const out: any[] = [];
-  const history: number[] = [];
-  const getUniqueLabel = (): string => {
-    const index: number = Math.floor(
-      Math.random() * dummyContent.labels.length
-    );
-    // index already in history so recursively call again.
-    if (history.includes(index)) {
-      // If our history is as long as the dummy length reset history.
-      if (history.length === dummyContent.labels.length) {
-        history.length = 0;
-      }
-      return getUniqueLabel();
-    } else {
-      // Put index in history and return label.
-      history.push(index);
-      const label = dummyContent.labels[index];
-      return label;
-    }
-  };
-  // Create checkboxes.
-  let defaultSelectedKey: string = "";
-  const options: any[] = [];
-  for (let i = 0; i < amount; i++) {
-    const option: { key: string; text: string; disabled?: boolean } = {
-      key: getId(String(i)),
-      text: getUniqueLabel()
-    };
-    if (i === defaultOption - 1) {
-      defaultSelectedKey = option.key;
-    }
-    options.push(option);
-  }
+export const genRadio = (
+         amount: number,
+         defaultOption: number
+       ): JSX.Element[] => {
+         const out: JSX.Element[] = [];
+         const history: number[] = [];
+         const getUniqueLabel = (): string => {
+           const index: number = Math.floor(
+             Math.random() * dummyContent.labels.length
+           );
+           // index already in history so recursively call again.
+           if (history.includes(index)) {
+             // If our history is as long as the dummy length reset history.
+             if (history.length === dummyContent.labels.length) {
+               history.length = 0;
+             }
+             return getUniqueLabel();
+           } else {
+             // Put index in history and return label.
+             history.push(index);
+             const label = dummyContent.labels[index];
+             return label;
+           }
+         };
+         // Create checkboxes.
+         let defaultSelectedKey: string = "";
+         const options: any[] = [];
+         for (let i = 0; i < amount; i++) {
+           const option: { key: string; text: string; disabled?: boolean } = {
+             key: getId(String(i)),
+             text: getUniqueLabel()
+           };
+           if (i === defaultOption - 1) {
+             defaultSelectedKey = option.key;
+           }
+           options.push(option);
+         }
 
-  out.push(
-    <ChoiceGroup
-      className="defaultChoiceGroup"
-      defaultSelectedKey={defaultSelectedKey}
-      options={options}
-      onChange={ev => {
-        console.log(ev);
-      }}
-      label="Pick one"
-      required={true}
-    />
-  );
-  return out;
-};
+         out.push(
+           <ChoiceGroup
+             className="defaultChoiceGroup"
+             defaultSelectedKey={defaultSelectedKey}
+             options={options}
+             onChange={ev => {
+               console.log(ev);
+             }}
+             label="Pick one"
+             required={true}
+           />
+         );
+         return out;
+       };
