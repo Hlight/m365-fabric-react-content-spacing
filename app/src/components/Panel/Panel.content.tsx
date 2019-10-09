@@ -8,6 +8,49 @@ import { dummyContent } from "../../dummy/dummyContent";
 import { genCheckboxes, genCheckboxDesc, genRadio } from "../Inputs/Inputs";
 
 
+const ChoiceFieldGroup = (props: any) => {
+  const getControls = (type: string) => {
+    return type === "radio"
+      ? genRadio(props.length, defaultSelected)
+      : genCheckboxes(props.length);
+  };
+
+  const type = !!props.type ? props.type :
+   (Math.round(Math.random() * 1) === 0) ? "radio" : "checkbox";
+
+  const defaultSelected = props.defaultSelected || Math.round(Math.random() * props.length);
+  return (
+    <div className="ms-ChoiceFieldGroup">
+      <p>If you can design one thing, you can design everything.</p>
+      {getControls(type)}
+    </div>
+  );
+};
+
+
+
+interface IContentItem {
+  type?: string;
+  length?: string;
+  defaultSelected?: string;
+}
+const createContentItem = ({type, length, defaultSelected}: IContentItem = {}) => {
+  type = type || (() => {
+    const types = ["ChoiceFieldGroup"];
+    const randomIndex = Math.round(Math.random() * (types.length-1));
+    console.log(randomIndex, types[randomIndex]);
+    return types[randomIndex];
+  })();
+  const types = type.split("--");
+  const typeField = types[0];
+  const typeInput = types[1];
+  const inputCount = (length) ? length : Math.round(Math.random() * 12);
+  switch (typeField) {
+    case "ChoiceFieldGroup":
+      return <ChoiceFieldGroup type={typeInput} length={inputCount} />;
+    // case ""      
+  }
+};
 export const getPanelContent = (num: any) => {
   num = parseInt(num);
   switch (num) {
