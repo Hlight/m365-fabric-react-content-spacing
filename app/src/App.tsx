@@ -10,7 +10,7 @@ import { Nav } from "./components/Nav/Nav";
 
 import { DefaultContent } from "./components/DefaultContent/DefaultContent";
 
-import { Content } from "./components/Panel/PanelDefault";
+import { PanelContentRow } from "./components/Content/PanelContentRow";
 
 // Icons must be initialized in order to load their styles
 initializeIcons(/* optional base url */);
@@ -19,11 +19,10 @@ const PageContent: React.FC = (props: { children?: ReactNode }) => {
   return (
     <div
       className="content-wrapper"
-      style={{ margin: "-48px", overflowX:"scroll", whiteSpace: "nowrap" }}
+      style={{ margin: "-48px", overflowX: "scroll", whiteSpace: "nowrap" }}
     >
       {/* <DefaultContent /> */}
-      {/* <LayerCustomizedExample /> */}
-      <Content />
+      <PanelContentRow />
     </div>
   );
 };

@@ -23,3 +23,35 @@ export const dummyContent = {
     "Wolfgang Weingart"
   ]
 };
+
+export const getUniqueLabel = (history: number[]): string => {
+  const index: number = Math.floor(Math.random() * dummyContent.labels.length);
+  // index already in history so recursively call again.
+  if (history.includes(index)) {
+    // If our history is as long as the dummy length reset history.
+    if (history.length === dummyContent.labels.length) {
+      history.length = 0;
+    }
+    return getUniqueLabel(history);
+  } else {
+    // Put index in history and return label.
+    history.push(index);
+    const label = dummyContent.labels[index];
+    return label;
+  }
+};
+export const getUniqueDesc = (history: number[]): string => {
+  const index: number = Math.floor(
+    Math.random() * dummyContent.descriptions.length
+  );
+  if (history.includes(index)) {
+    if (history.length === dummyContent.descriptions.length) {
+      history.length = 0;
+    }
+    return getUniqueDesc(history);
+  } else {
+    history.push(index);
+    const label = dummyContent.descriptions[index];
+    return label;
+  }
+};
