@@ -19,7 +19,7 @@ const PageContent: React.FC = (props: { children?: ReactNode }) => {
   return (
     <div
       className="content-wrapper"
-      style={{ margin: "-48px", width: "1000%" }}
+      style={{ margin: "-48px", overflowX:"scroll", whiteSpace: "nowrap" }}
     >
       {/* <DefaultContent /> */}
       {/* <LayerCustomizedExample /> */}
