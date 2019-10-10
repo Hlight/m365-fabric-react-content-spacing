@@ -2,6 +2,8 @@
           font-size: 14px;
           line-height: 20px;
           text-align: justify;
+          margin-bottom: 22px;
+          margin-top: 54px;
         }
 .ms-Panel-header { margin: 0 }
 .ms-Panel-content > p:first-child {
@@ -9,7 +11,18 @@
           margin-bottom: 40px;
         }
 .ms-Panel-content > div:first-child { margin-top: 48px }
-.ms-ChoiceFieldGroup > p { 
+.ms-ChoiceFieldGroup { 
   /* color: purple; */
-  font-weight: bold;
+  /* font-weight: bold; */
+  margin-top: 46px;
+}
+.ms-ChoiceFieldGroup .ms-ChoiceFieldGroup {
+  margin-top: 8px;
+}
+.defaultChoiceGroup {
+  margin-bottom: 46px;
+}
+.ms-Checkbox {
+  min-height: 36px;
+  margin: 0;
 }

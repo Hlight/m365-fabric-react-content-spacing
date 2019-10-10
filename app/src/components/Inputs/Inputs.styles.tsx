@@ -4,16 +4,16 @@ import { NeutralColors, FontSizes } from "@uifabric/fluent-theme/lib/fluent";
 export const getClassNames = () => {
   return mergeStyleSets({
     checkboxDesc: {
-      fontWeight: "bold",
+      fontWeight: "600",
       selectors: {
         p: {
           lineHeight: "1.46",
           fontWeight: "normal",
           marginLeft: "28px",
-          marginTop: "2px"
+          marginTop: "-15px"
         },
         "& label": {
-          fontWeight: "bold"
+          fontWeight: "600"
         }
       }
     },
@@ -27,7 +27,7 @@ export const getClassNames = () => {
       marginLeft: "25px"
     },
     msChoiceOptionDescLabel: {
-      fontWeight: "bold",
+      fontWeight: "600",
       lineHeight: "1.46"
     }
   });

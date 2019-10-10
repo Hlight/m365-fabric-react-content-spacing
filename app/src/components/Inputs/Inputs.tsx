@@ -6,7 +6,6 @@ import {
   getId,
   IChoiceGroupOptionProps
 } from "office-ui-fabric-react";
-// import { mergeStyleSets } from "@uifabric/merge-styles";
 import { getUniqueLabel, getUniqueDesc } from "../../data/dummyContent";
 
 
@@ -15,15 +14,18 @@ const checkboxStyles: any = (): any => {
     root: {
       marginTop: "10px",
       lineHeight: "1.46",
-      fontWeight: "bold"
+      fontWeight: "600"
     },
     selectors: {
       "&": {
       fontSize: "14px",
       fontWeight: "400",
-      minHeight: "36px"
+      minHeight: "36px",
+      marginBottom: "4px"
     },
-    "& + p": {}
+    "& + p": {
+      marginTop: "-6px"
+    }
     }
   };
 };
@@ -138,6 +140,18 @@ export const genRadio = (
       }}
       label="Pick one"
       required={true}
+      styles={{
+        root: {
+          minHeight: "36px",
+          selectors: {
+            ".ms-ChoiceField": {
+              minHeight: "36px",
+              marginTop: "0",
+              marginBottom: "4px"
+            }
+          }
+        }
+      }}
     />
   );
   return out;

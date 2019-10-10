@@ -89,8 +89,6 @@ export class PanelContent extends React.Component<
             position: "relative",
             height: "calc(100vh - 60px)",
             overflow: "hidden",
-            //  borderLeft: "1px dashed #ccc",
-            //  borderRight: "1px dashed #ccc"
             padding: "15px"
           }}
           onClick={this._showPanel}

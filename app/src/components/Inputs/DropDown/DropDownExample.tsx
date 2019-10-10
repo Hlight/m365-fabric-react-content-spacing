@@ -35,15 +35,18 @@ const options: IDropdownOption[] = [
 const stackTokens: IStackTokens = { childrenGap: 20 };
 
 export const DropdownBasicExample: React.StatelessComponent = () => {
-  return (
-    <Stack tokens={stackTokens}>
+  const getDropDown = () => {
+    const randomNum = Math.ceil(Math.random() * 3);
+    switch (randomNum) {
+      case 1: return (
       <Dropdown
         placeholder="Select an option"
         label="Basic uncontrolled example"
         options={options}
         styles={dropdownStyles}
       />
-
+      );
+      case 2: return (
       <Dropdown
         label="Disabled example with defaultSelectedKey"
         defaultSelectedKey="broccoli"
@@ -51,7 +54,8 @@ export const DropdownBasicExample: React.StatelessComponent = () => {
         disabled={true}
         styles={dropdownStyles}
       />
-
+      );
+      case 3: return (
       <Dropdown
         placeholder="Select options"
         label="Multi-select uncontrolled example"
@@ -60,6 +64,12 @@ export const DropdownBasicExample: React.StatelessComponent = () => {
         options={options}
         styles={dropdownStyles}
       />
+      );
+    }
+  }
+  return (
+    <Stack tokens={stackTokens}>
+      {getDropDown()}
     </Stack>
   );
 };

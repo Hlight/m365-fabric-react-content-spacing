@@ -1,11 +1,5 @@
 import React from "react";
 import {
-  DefaultButton,
-  PrimaryButton,
-  Panel,
-  PanelType,
-  Checkbox,
-  IStyle,
   LayerHost,
   getId
 } from "office-ui-fabric-react";

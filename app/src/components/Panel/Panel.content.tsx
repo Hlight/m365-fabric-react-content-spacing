@@ -6,6 +6,13 @@ import { mergeStyleSets } from "@uifabric/merge-styles";
 import { dummyContent } from "../../data/dummyContent";
 
 import { genCheckboxes, genCheckboxDesc, genRadio } from "../Inputs/Inputs";
+import { DropdownBasicExample } from "../Inputs/DropDown/DropDownExample";
+
+const LeadP = (): JSX.Element => {
+  return (
+    <p className="lead">{dummyContent.leads[0]}</p>
+  )
+};
 
 function getRandomizer(bottom: number, top: number) {
   return function() {
@@ -19,10 +26,16 @@ const getClassNames = () =>
       selectors: {
         "& > p": {
           lineHeight: "20px",
-          textAlign: "justify"
+          textAlign: "justify",
+          fontWeight: "600",
+          color: "#333",
+          marginBottom: "20px"
         },
         "& + .ms-ChoiceFieldGroup": {
           marginTop: "46px"
+        },
+        "&":{
+          marginBottom: "27px"
         }
       }
     }
@@ -63,11 +76,11 @@ const ChoiceField = (props: any) => {
 // Groups of choices with descriptions after each label
 const ChoiceFieldGroupDesc = (props: any) => {
   const getControls = (type: string) => {
-    console.log("props.isChecked");
-    console.log(props.isChecked)
+    // console.log("props.isChecked");
+    // console.log(props.isChecked)
     return type === "radio"
     ? genRadio(props.length, defaultSelected, true)
-    : genCheckboxDesc(props.length);
+    : genCheckboxDesc(props.length, props.isChecked);
   }
   const type = !!props.type ? props.type :
    (Math.round(Math.random() * 1) === 0) ? "radio" : "checkbox";
@@ -91,9 +104,15 @@ interface IContentItem {
 // then they are assigned at random.
 const createContentItem = ({type, length, defaultSelected}: IContentItem = {}) => {
   type = type || (() => {
-    const types = ["ChoiceFieldGroup", "ChoiceField", "ChoiceFieldGroupDesc"];
+    const types = [
+      "ChoiceFieldGroup",
+      "ChoiceField",
+      "ChoiceFieldGroupDesc",
+      "LeadP",
+      "DropdownBasicExample"
+    ];
     const randomIndex = Math.round(Math.random() * (types.length-1));
-    console.log(randomIndex, types[randomIndex]);
+    // console.log(randomIndex, types[randomIndex]);
     return types[randomIndex];
   })();
   const randomNum = getRandomizer(2, 12);
@@ -108,6 +127,10 @@ const createContentItem = ({type, length, defaultSelected}: IContentItem = {}) =
       return <ChoiceField type={typeInput} length={inputCount} />
     case "ChoiceFieldGroupDesc":
       return <ChoiceFieldGroupDesc type={typeInput} length={inputCount} />
+    case "LeadP":
+      return <LeadP />
+    case "DropdownBasicExample":
+      return <DropdownBasicExample />
   }
 };
 //
@@ -135,7 +158,7 @@ export const getPanelContent = (num: any) => {
 function panel01() {
   return (
     <React.Fragment>
-      <p>{dummyContent.leads[0]}</p>
+      <LeadP />
       <ChoiceFieldGroup length="12" isChecked={true} type="checkbox" />
     </React.Fragment>
   );
@@ -143,8 +166,8 @@ function panel01() {
 function panel02() {
   return (
     <React.Fragment>
-      <p>{dummyContent.leads[0]}</p>
-      <ChoiceFieldGroup type="checkbox" length="6" isChecked={false} />
+      <LeadP />
+      <ChoiceFieldGroup type="checkbox" length="6" isChecked={true} />
       <ChoiceFieldGroup length="3" isChecked={true} type="checkbox" />
     </React.Fragment>
   );
@@ -152,14 +175,8 @@ function panel02() {
 function panel03() {
   return (
     <React.Fragment>
-      <p>
-        Ask why until it becomes painful, until you’re sick of the word. And
-        give it character — there’s enough ‘nice’ design in the world. Whether
-        sublime, exuberant, minimal or maximal, give your work personality.
-        Don’t be afraid to be awkward — what feels comfortable today, will be
-        boring tomorrow.
-      </p>
-      <ChoiceFieldGroupDesc length="4" type="radio" />
+      <LeadP />
+      <ChoiceFieldGroupDesc length="4" type="checkbox" isChecked={true} />
       <ChoiceFieldGroup length="4" isChecked={true} type="checkbox" />
     </React.Fragment>
   );
@@ -168,10 +185,12 @@ function panel04() {
   return genCheckboxes(5);
 }
 function panel05() {
-  return (<>
-    <p>{dummyContent.leads[0]}</p>
-    { genRadio(12, 1) }
-  </>)
+  return (
+    <>
+      <LeadP />
+      <ChoiceFieldGroup length="12" defaultSelected="1" type="radio" />
+    </>
+  );
 }
 function panel06() {
   console.log("panel06");
