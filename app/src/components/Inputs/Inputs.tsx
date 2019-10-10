@@ -73,7 +73,7 @@ export const genCheckboxes = (amount: number = 2, isChecked?: boolean): JSX.Elem
   const out: JSX.Element[] = [];
   const history: number[] = [];
   for (let i = 0; i < amount; i++) {
-    const label: string = getUniqueLabel(history);
+    const label: string  = getUniqueLabel(history);
     const defaultChecked: boolean = (typeof isChecked !== "undefined") ? isChecked : !!Math.round(Math.random() * 1);
     out.push(
       <Checkbox
@@ -99,10 +99,10 @@ export const genRadio = (
   const options: any[] = [];
   let defaultSelectedKey: string = "";
   for (let i = 0; i < amount; i++) {
-    const labelDesc = getUniqueDesc(historyDesc);
+    const labelDesc: string = getUniqueDesc(historyDesc);
     const option: {
       key: string;
-      text: string;
+      text: string | JSX.Element;
       disabled?: boolean;
       onRenderLabel?: any;
     } = {
@@ -110,16 +110,21 @@ export const genRadio = (
       text: getUniqueLabel(history),
       onRenderLabel: (props: IChoiceGroupOptionProps): JSX.Element => {
         return (
-          <div style={{marginBottom: "4px"}}>
+          <div style={{ marginBottom: "4px" }}>
             <span
               id={props.labelId}
               className={
-                "ms-ChoiceFieldLabel "+ (isDescEnabled ? getClassNames().msChoiceOptionDescLabel : "")
+                "ms-ChoiceFieldLabel " +
+                (isDescEnabled ? getClassNames().msChoiceOptionDescLabel : "")
               }
             >
               {props.text}
             </span>
-            {isDescEnabled ? <span className={getClassNames().msLabelDesc}>{labelDesc}</span> : ""}
+            {isDescEnabled ? (
+              <span className={getClassNames().msLabelDesc}>{labelDesc}</span>
+            ) : (
+              ""
+            )}
           </div>
         );
       }

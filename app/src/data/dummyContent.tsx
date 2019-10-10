@@ -1,3 +1,5 @@
+import * as React from "react";
+import { Link } from "office-ui-fabric-react/lib/Link";
 export const dummyContent = {
   leads: [
     "Ask why until it becomes painful, until you’re sick of the word. And give it character — there’s enough ‘nice’ design in the world. Whether sublime, exuberant, minimal or maximal, give your work personality. Don’t be afraid to be awkward — what feels comfortable today, will be boring tomorrow."
@@ -9,7 +11,7 @@ export const dummyContent = {
     "Design is so simple, that’s why it is so complicated.",
     "Practice safe design: Use a concept.",
     "Good design is obvious. Great design is transparent.",
-    "Design is thinking made visual.",
+    "Design is thinking made visual."
   ],
   descriptions: [
     "Good design is obvious. Great design is transparent.",
@@ -24,7 +26,15 @@ export const dummyContent = {
   ]
 };
 
-export const getUniqueLabel = (history: number[]): string => {
+// const addLinks = (content: string): string|JSX.Element => {
+//   const splits = content.split(/([\w ]+ \w+ )/);
+//   if (splits.length > 3){
+//     splits[3] = <Link href="javascript:;">{splits[3]}</Link>
+//   }
+//   return splits.join('');
+// }
+
+export const getUniqueLabel = (history: number[] = []): string => {
   const index: number = Math.floor(Math.random() * dummyContent.labels.length);
   // index already in history so recursively call again.
   if (history.includes(index)) {
@@ -40,7 +50,7 @@ export const getUniqueLabel = (history: number[]): string => {
     return label;
   }
 };
-export const getUniqueDesc = (history: number[]): string => {
+export const getUniqueDesc = (history: number[] = []): string => {
   const index: number = Math.floor(
     Math.random() * dummyContent.descriptions.length
   );

@@ -26,7 +26,8 @@
     "react-dom": "^16.10.1",
     "react-scripts": "3.1.2",
     "tslint": "^5.20.0",
-    "typescript": "3.6.3"
+    "typescript": "3.6.3",
+    "weighted-random": "^0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
