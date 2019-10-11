@@ -6,7 +6,11 @@ import {
   getId,
   IChoiceGroupOptionProps
 } from "office-ui-fabric-react";
-import { getUniqueLabel, getUniqueDesc } from "../../data/dummyContent";
+import {
+  getUniqueLabel,
+  getUniqueDesc,
+  getUniqueName
+} from "../../data/dummyContent";
 
 
 const checkboxStyles: any = (): any => {
@@ -107,7 +111,7 @@ export const genRadio = (
       onRenderLabel?: any;
     } = {
       key: getId(String(i)),
-      text: getUniqueLabel(history),
+      text: (amount <= 4) ? getUniqueName(history) : getUniqueLabel(history),
       onRenderLabel: (props: IChoiceGroupOptionProps): JSX.Element => {
         return (
           <div style={{ marginBottom: "4px" }}>

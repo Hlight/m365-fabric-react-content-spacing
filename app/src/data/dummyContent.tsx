@@ -26,42 +26,50 @@ export const dummyContent = {
   ]
 };
 
-// const addLinks = (content: string): string|JSX.Element => {
-//   const splits = content.split(/([\w ]+ \w+ )/);
-//   if (splits.length > 3){
-//     splits[3] = <Link href="javascript:;">{splits[3]}</Link>
-//   }
-//   return splits.join('');
-// }
-
+export const getUniqueName = (history: number[] = []): string =>{
+  const strings: string[] = dummyContent.names;
+  const index: number = Math.floor(Math.random() * strings.length);
+  if (history.includes(index)) {
+    if (history.length === strings.length) {
+      history.length = 0;
+    }
+    return getUniqueName(history);
+  } else {
+    history.push(index);
+    const name = strings[index];
+    return name;
+  }
+}
 export const getUniqueLabel = (history: number[] = []): string => {
-  const index: number = Math.floor(Math.random() * dummyContent.labels.length);
+  const strings: string[] = dummyContent.labels;
+  const index: number = Math.floor(Math.random() * strings.length);
   // index already in history so recursively call again.
   if (history.includes(index)) {
     // If our history is as long as the dummy length reset history.
-    if (history.length === dummyContent.labels.length) {
+    if (history.length === strings.length) {
       history.length = 0;
     }
     return getUniqueLabel(history);
   } else {
     // Put index in history and return label.
     history.push(index);
-    const label = dummyContent.labels[index];
+    const label = strings[index];
     return label;
   }
 };
 export const getUniqueDesc = (history: number[] = []): string => {
+  const strings: string[] = dummyContent.descriptions;
   const index: number = Math.floor(
-    Math.random() * dummyContent.descriptions.length
+    Math.random() * strings.length
   );
   if (history.includes(index)) {
-    if (history.length === dummyContent.descriptions.length) {
+    if (history.length === strings.length) {
       history.length = 0;
     }
     return getUniqueDesc(history);
   } else {
     history.push(index);
-    const label = dummyContent.descriptions[index];
+    const label = strings[index];
     return label;
   }
 };
