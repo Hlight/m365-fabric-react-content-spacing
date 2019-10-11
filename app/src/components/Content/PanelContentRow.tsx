@@ -64,6 +64,7 @@ export class PanelContentRow extends React.Component<{}, {}> {
             .lighten(0.05)
             .hex()};}
           #${id}:hover #addPanel { background: ${this._hoverColor};}
+          #${id}:hover #addPanel div { text-decoration: underline; }
           `}
         </style>
         <div
@@ -86,7 +87,7 @@ export class PanelContentRow extends React.Component<{}, {}> {
               padding: "15px"
             }}
             onClick={this._addPanel}
-          ></LayerHost>
+          ><div style={{lineHeight: "calc(100vh - 16px)",textAlign: "center"}}>Click to add a new panel with random content.</div></LayerHost>
         </div>
       </>
     );
