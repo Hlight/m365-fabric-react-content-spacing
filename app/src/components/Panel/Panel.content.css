@@ -2,14 +2,20 @@
           font-size: 14px;
           line-height: 20px;
           text-align: justify;
-          margin-bottom: 22px;
-          margin-top: 54px;
+          /* margin-bottom: 22px; */
+          /* margin-top: 54px; */
         }
 .ms-Panel-header { margin: 0 }
 .ms-Panel-content > p:first-child {
-          margin-top: 27px;
-          margin-bottom: 40px;
-        }
+  margin-top: 27px;
+  margin-bottom: 40px;
+}
+.ms-Panel-content > a:first-child {
+  margin-top: 27px;
+}
+.ms-Panel-content > a:first-child + p:first-child {
+  margin-top: auto;
+}
 .ms-Panel-content > div:first-child { margin-top: 48px }
 .ms-ChoiceFieldGroup { 
   /* color: purple; */
